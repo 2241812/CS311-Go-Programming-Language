@@ -20,15 +20,15 @@ func main() {
 
 		switch choice {
 		case 1:
-			RunGradeCalculator()
+		
 		case 2:
-			RunResidentRegistry()
+			
 		case 3:
-			RunWaterEstimator()
+		
 		case 4:
-			RunGarbageScheduler()
+		
 		case 5:
-			RunVotingSystem()
+	
 		case 0:
 			fmt.Println("Goodbye!")
 			return
