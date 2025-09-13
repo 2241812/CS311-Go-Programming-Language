@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"math/rand"
 	"os"
 	"strings"
 	"time"
@@ -18,6 +19,8 @@ type IncidentReport struct {
 }
 
 func main() {
+	rand.Seed(time.Now().UnixNano())
+
 	for {
 		fmt.Println("\n=== Barangay Incident Report System ===")
 		fmt.Println("1. Create Incident Report")
@@ -52,6 +55,9 @@ func main() {
 			fmt.Println(report.GenerateReport())
 
 			saveReport(report.GenerateReport())
+
+		
+			notifyOfficersConcurrently(report)
 
 		case "2":
 			username := readInput("Enter admin username: ")
@@ -116,6 +122,28 @@ func viewReports() {
 		fmt.Println("No reports found or error reading file.")
 		return
 	}
-	fmt.Println("\n===ALL SAVED REPORTS===")
+	fmt.Println("\n=== ALL SAVED REPORTS ===")
 	fmt.Println(string(data))
+}
+
+
+func notifyOfficersConcurrently(report IncidentReport) {
+	officers := []string{"Officer A", "Officer B", "Officer C"}
+	results := make(chan string, len(officers))
+
+	fmt.Println("\n📢 Notifying barangay officers...")
+
+	for _, officer := range officers {
+		go func(officer string) {
+			delay := time.Duration(rand.Intn(3)+1) * time.Second
+			time.Sleep(delay)
+			results <- fmt.Sprintf("%s received the report about %s vs %s at %s (after %v)",
+				officer, report.Complainant, report.Respondent, report.Location, delay)
+		}(officer)
+	}
+
+	
+	for i := 0; i < len(officers); i++ {
+		fmt.Println(<-results)
+	}
 }
