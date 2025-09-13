@@ -1,6 +1,6 @@
-**Barangay Incident Report System (GoLang)**__
+**Barangay Incident Report System (GoLang)**
 
-**Overview**
+Overview
 
 The Barangay Incident Report System is a simple Go-based console application designed to help barangay offices (or schools) record and manage incident reports.
 This project not only demonstrates a practical barangay-level solution but also showcases Go’s concurrency features (goroutines and channels).
