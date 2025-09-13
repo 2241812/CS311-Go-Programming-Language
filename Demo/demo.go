@@ -68,7 +68,7 @@ func main() {
 			username := readInput("Enter admin username: ")
 			password := readInput("Enter admin password: ")
 
-			if username == "brenty" && password == "brenty" {
+			if username == "admin" && password == "123" {
 				fmt.Println("Admin login successful.")
 				viewReports()
 			} else {
