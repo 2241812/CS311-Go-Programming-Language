@@ -72,9 +72,9 @@ func main() {
 
 func (ir IncidentReport) GenerateReport() string {
 	return fmt.Sprintf(`
-===============================
+
       BARANGAY INCIDENT REPORT
-===============================
+
 Date       : %s
 Location   : %s
 
@@ -85,7 +85,7 @@ Incident Details:
 %s
 
 Prepared by: %s
-===============================
+
 `, ir.Date.Format("January 02, 2006 03:04 PM"), ir.Location, ir.Complainant, ir.Respondent, ir.Description, ir.Officer)
 }
 
@@ -116,6 +116,6 @@ func viewReports() {
 		fmt.Println("No reports found or error reading file.")
 		return
 	}
-	fmt.Println("\n=== ALL SAVED REPORTS ===")
+	fmt.Println("\n===ALL SAVED REPORTS===")
 	fmt.Println(string(data))
 }
